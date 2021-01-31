@@ -1,5 +1,7 @@
 # sam-tutorial-hello-world
 
+![SAM Validate, Build, Test, Deploy](https://github.com/aoraki/aws-sam-hello-world/workflows/SAM%20Validate,%20Build,%20Test,%20Deploy/badge.svg)
+
 This project contains source code and supporting files for a serverless application that you can deploy with the SAM CLI. It includes the following files and folders.
 
 - HelloWorldFunction/src/main - Code for the application's Lambda function.
@@ -33,6 +35,20 @@ To build and deploy your application for the first time, run the following in yo
 sam build
 sam deploy --guided
 ```
+
+## Deploy the sample application to your AWS Account using Github Actions
+
+The repo comes with a github actions workflow file, `.github\workflows\dev.yml`  When you push changes to the master branch the github action will checkout the code, 
+perform a `sam validate` to ensure your SAM definition is valid.  A `sam build` will be done to build and test the source code, followed by a
+`sam deploy` to deployment the infrastructure and the code.  To use this github actions workflow you need to have the following
+prerequisites in place;
+
+* **An S3 Deployment Bucket** : This is used by SAM to store artifacts for the deployment.  Create an S3 bucket in the console or using the following AWS CLI command; `aws s3 mb s3://YOUR-BUCKET-NAME`
+* A github secret called **AWS_DEPLOY_BUCKET** : The value of which should be the name of the bucket you have created in the step above
+* A github secret called **AWS_ACCESS_KEY_ID** : The value should be the access key ID of an IAM User that has permissions to create the necessary infrastructure in your AWS Environment
+* A github secret called **AWS_SECRET_ACCESS_KEY** : The value should be the secret access key of an IAM User that has permissions to create the necessary infrastructure in your AWS Environment
+* A github secret called **AWS_REGION** : The value should be the AWS Region you want to deploy the infrastructure to; eg `eu-west-1`,`us-east-1` etc.
+
 
 The first command will build the source of your application. The second command will package and deploy your application to AWS, with a series of prompts:
 
@@ -118,4 +134,3 @@ See the [AWS SAM developer guide](https://docs.aws.amazon.com/serverless-applica
 
 Next, you can use AWS Serverless Application Repository to deploy ready to use Apps that go beyond hello world samples and learn how authors developed their applications: [AWS Serverless Application Repository main page](https://aws.amazon.com/serverless/serverlessrepo/)
 
-![SAM Validate, Build, Test, Deploy](https://github.com/aoraki/aws-sam-hello-world/workflows/SAM%20Validate,%20Build,%20Test,%20Deploy/badge.svg)
