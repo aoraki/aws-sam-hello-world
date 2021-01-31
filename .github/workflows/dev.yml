@@ -52,9 +52,6 @@ jobs:
       - name: SAM Build
         run: |
           sam build
-      #- name: Run unit tests
-      #  run: |s
-      #    python3 -m pytest -s -vvv ./tests/unit/
       - name: SAM Deploy
         run: |
           # Create S3 Bucket to store code
@@ -62,7 +59,7 @@ jobs:
           # Run SAM Deploy
           sam deploy --template-file .aws-sam/build/template.yaml \
             --stack-name ${{ steps.vars.outputs.environment }} \
-            --s3-bucket ${{ steps.vars.outputs.environment }} \
+            --s3-bucket ${{ secrets.AWS_DEPLOY_BUCKET }} \
             --parameter-overrides \
               'ParameterKey=Name,ParameterValue=example \
               ParameterKey=Version,ParameterValue=${{ steps.vars.outputs.version }}' \
