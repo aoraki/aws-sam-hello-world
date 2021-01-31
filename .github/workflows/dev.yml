@@ -52,9 +52,9 @@ jobs:
       - name: SAM Build
         run: |
           sam build
-      - name: Run unit tests
-        run: |
-          python3 -m pytest -s -vvv ./tests/unit/
+      #- name: Run unit tests
+      #  run: |s
+      #    python3 -m pytest -s -vvv ./tests/unit/
       - name: SAM Deploy
         run: |
           # Create S3 Bucket to store code
