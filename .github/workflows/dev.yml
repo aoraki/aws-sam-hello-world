@@ -54,8 +54,6 @@ jobs:
           sam build
       - name: SAM Deploy
         run: |
-          # Create S3 Bucket to store code
-          aws s3 mb s3://${{ steps.vars.outputs.environment }}
           # Run SAM Deploy
           sam deploy --template-file .aws-sam/build/template.yaml \
             --stack-name ${{ steps.vars.outputs.environment }} \
