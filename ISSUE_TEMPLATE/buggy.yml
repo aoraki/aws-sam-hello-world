@@ -1,0 +1,18 @@
+name: Bug Report  
+description: Report a bug  
+body:  
+  - type: input  
+    id: contact  
+    attributes:  
+      label: Contact Details  
+      description: Please enter your contact details.  
+      placeholder: e.g. email@example.com  
+    validations:  
+      required: true  
+  - type: textarea  
+    id: bug-details  
+    attributes:  
+      label: Bug Details  
+      description: Please describe the bug in detail.  
+    validations:  
+      required: true  
